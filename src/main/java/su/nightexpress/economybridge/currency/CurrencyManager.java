@@ -98,23 +98,10 @@ public class CurrencyManager extends AbstractManager<BridgePlugin> {
     }
 
     private void loadProviders() {
-        this.pluginProviders.put(CurrencyPlugins.PLAYER_POINTS, () -> this.loadCurrency(CurrencyId.PLAYER_POINTS, PlayerPointsCurrency::new));
-        this.pluginProviders.put(CurrencyPlugins.BEAST_TOKENS, () -> this.loadCurrency(CurrencyId.BEAST_TOKENS, BeastTokensCurrency::new));
-        this.pluginProviders.put(CurrencyPlugins.VOTING_PLUGIN, () -> this.loadCurrency(CurrencyId.VOTING_PLUGIN, VotingCurrency::new));
-        this.pluginProviders.put(CurrencyPlugins.ELITEMOBS, () -> this.loadCurrency(CurrencyId.ELITE_MOBS, EliteMobsCurrency::new));
-
         this.pluginProviders.put(Plugins.VAULT, () -> {
             if (VaultHook.hasEconomy()) {
                 this.loadCurrency(CurrencyId.VAULT, VaultEconomyCurrency::new);
             }
-        });
-
-        this.pluginProviders.put(CurrencyPlugins.COINS_ENGINE, () -> {
-            CoinsEngineCurrency.getCurrencies().forEach(this::registerCurrency);
-        });
-
-        this.pluginProviders.put(CurrencyPlugins.ULTRA_ECONOMY, () -> {
-            UltraEconomyCurrency.getCurrencies().forEach(this::registerCurrency);
         });
 
         this.pluginProviders.put(CurrencyPlugins.GEMS_ECONOMY, () -> {
